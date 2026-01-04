@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { heroConfig } from '../Config/hero.Config';
+import { heroConfig } from '../Config/heroConfig';
 export default function Hero() {
   const bgRef = useRef(null);
   const textRef = useRef(null);
