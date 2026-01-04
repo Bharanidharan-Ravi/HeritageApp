@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { heroConfig } from '../config/hero.config'; // Using your modular config
-
+import { heroConfig } from '../../config/heroConfig';
 export default function Hero() {
   const bgRef = useRef(null);
   const textRef = useRef(null);
