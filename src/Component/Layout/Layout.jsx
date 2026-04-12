@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { heroConfig } from "../Config/heroConfig";
 
 export default function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+   const { assets } = heroConfig;
 
   // THEME COLOR
   const THEME_ACCENT = "#FFD050"; 
@@ -62,13 +64,20 @@ export default function Layout() {
           
           {/* LOGO */}
           <button onClick={() => handleNavClick("home")} className="group flex items-center gap-3">
-            <div 
+            {/* <div 
               className={`w-12 h-12 flex items-center justify-center rounded-md transition-colors duration-500 font-bold text-xl shadow-lg ${
               isScrolled ? "text-[#0b1720]" : "bg-white/10 text-white backdrop-blur-md border border-white/20"
               }`}
               style={{ backgroundColor: isScrolled ? THEME_ACCENT : '' }}
             >
               AT
+            </div> */}
+            <div className="site-logo">
+              <img
+                src={assets.logo}
+               alt="Archaeo Trails Logo" 
+          className="w-14 h-14 object-contain drop-shadow-lg" 
+        />
             </div>
             <div className="text-left flex flex-col">
               <h1 className="text-2xl font-bold tracking-wide text-white drop-shadow-md leading-none">
