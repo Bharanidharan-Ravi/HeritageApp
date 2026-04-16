@@ -23,14 +23,14 @@ export const contactConfig = {
     subtitle: "Have questions about our trails or want to book a private tour? We'd love to hear from you.",
     
     // Contact Info
-    email: "explore@archaeotrails.com",
-    phone: "+91 98765 43210",
-    address: "12, Heritage Lane, Mylapore, Chennai, Tamil Nadu",
+    email: "infos@archaeotrails.com",
+    phone: "+91 8870705836",
+    address: "MIG - 156 Chinthamani, Tamil University Campus, Medical College Road, Thanjavur, Tamil Nadu- 613010",
     
     // Social Links
     socials: [
       { name: "Instagram", url: "https://instagram.com", icon: "instagram" },
-      { name: "WhatsApp", url: "https://wa.me/919876543210", icon: "whatsapp" },
+      { name: "WhatsApp", url: "https://wa.me/918870705836", icon: "whatsapp" },
       { name: "Facebook", url: "https://facebook.com", icon: "facebook" },
     ],
 
