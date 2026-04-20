@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import emailjs from "@emailjs/browser"; // Make sure to install: npm install @emailjs/browser
 import { contactConfig } from "../Config/contact.config";
 
 export default function Contact() {
@@ -7,30 +6,59 @@ export default function Contact() {
   const [status, setStatus] = useState(""); // 'success', 'error', or ''
   const { theme, content } = contactConfig;
 
-  const sendEmail = (e) => {
+  // Notice: The function is now async to handle the await fetch call
+  const sendEmail = async (e) => {
     e.preventDefault();
     setStatus("sending");
 
-    // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
-    // 1. Sign up at https://www.emailjs.com/
-    // 2. Create a Service (e.g., Gmail) -> get Service ID
-    // 3. Create an Email Template -> get Template ID
-    // 4. Go to Account -> get Public Key
+    // 1. Extract the data from the form
+    const formData = new FormData(form.current);
+    const payload = {
+      userName: formData.get("user_name"),
+      userEmail: formData.get("user_email"),
+      message: formData.get("message")
+    };
 
-    emailjs.sendForm(
-      "YOUR_SERVICE_ID",   // e.g. service_xyz123
-      "YOUR_TEMPLATE_ID",  // e.g. template_abc456
-      form.current,
-      "YOUR_PUBLIC_KEY"    // e.g. user_123456789
-    )
-    .then((result) => {
-        console.log("Email sent:", result.text);
+    // LOG: Check what data is being sent
+    console.log("--- API Request Started ---");
+    console.log("1. Payload prepared:", payload);
+
+    try {
+      // Use the environment variable you set up for Azure
+      const apiUrl = `${import.meta.env.VITE_API_URL}/api/contact/send`;
+      
+      // LOG: Verify the correct URL is being hit
+      console.log("2. Hitting API Endpoint:", apiUrl);
+
+      // 2. Make the POST request to your .NET 8 API
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      // LOG: Check the raw response status from Azure
+      console.log("3. API Response Status:", response.status);
+
+      // 3. Handle the result
+      if (response.ok) {
+        console.log("4. Success! Email delivered via Azure backend.");
         setStatus("success");
-        e.target.reset(); // Clear form
-    }, (error) => {
-        console.log("Error:", error.text);
+        form.current.reset(); // Clear form
+      } else {
+        // If it's a 400 or 500 error, try to read the error message from the API
+        const errorData = await response.json();
+        console.error("4. API Error Details:", errorData);
         setStatus("error");
-    });
+      }
+    } catch (error) {
+      // This catches network errors (e.g., CORS issues, or if the server is down)
+      console.error("Network or Fetch Error:", error);
+      setStatus("error");
+    }
+    console.log("--- API Request Finished ---");
   };
 
   return (
