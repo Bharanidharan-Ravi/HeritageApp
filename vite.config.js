@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     Sitemap({
       // Your live Netlify/GoDaddy domain goes here
-      hostname: 'www.archaeotrails.com'
+      hostname: 'https://www.archaeotrails.com'
     })
   ],
 })
