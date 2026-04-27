@@ -1,3 +1,4 @@
+import blogPost from './blogPost'
 import contact from './contact'
 import galleryItem from './galleryItem'
 import shopItem from './shopItem'
@@ -6,4 +7,4 @@ import walk from './walk'
 
 export const schemaTypes = [walk, contact, galleryItem,
   story,
-  shopItem,]
+  shopItem,blogPost]

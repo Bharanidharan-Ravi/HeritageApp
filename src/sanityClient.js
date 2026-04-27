@@ -6,7 +6,7 @@ export const client = createClient({
   projectId: "nh8jhz7r", // <--- We will find this in Step 2
   dataset: "production",
   useCdn: true, // true = fast response (cached), false = instant updates
-  apiVersion: "2023-01-01",
+  apiVersion: "2024-04-27",
 });
 
 const builder = imageUrlBuilder(client);

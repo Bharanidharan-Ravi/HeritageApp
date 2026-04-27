@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+@theme {
+  --color-hero-accent: #FFD050;
+  --font-serif: "Playfair Display", serif;
+}
 /* Your custom CSS below */
 :root, body, #root {
   width: 100vw;

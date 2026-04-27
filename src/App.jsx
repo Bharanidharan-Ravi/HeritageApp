@@ -2,6 +2,11 @@ import './App.css'
 import { Routes, Route, Outlet } from 'react-router-dom';
 import Layout from './Component/Layout/Layout';
 import HeritageHome from './Component/pages/HeritageHome';
+import BlogPost from './Component/Sections/BlogPost';
+import BlogList from './Component/Sections/BlogList';
+import BlogPost2 from './Component/Sections/BlogPost copy';
+import BlogList2 from './Component/Sections/BlogList copy';
+import WalkDetail from './Component/Sections/WalkDetail';
 
 // You can create basic placeholder components for these to avoid errors
 const Services = () => <div className="p-20 text-center text-2xl">Services Page Coming Soon</div>;
@@ -15,8 +20,13 @@ function App() {
         <Route path="/" element={<HeritageHome />} />
         <Route path="/about" element={<HeritageHome />} />
         <Route path="/walks" element={<HeritageHome />} />
+        <Route path="/walks/:slug" element={<WalkDetail />} />
         <Route path="/gallery" element={<HeritageHome />} />
         <Route path="/contact" element={<HeritageHome />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/blog" element={<BlogList />} />
+           {/* <Route path="/blogs/:slug" element={<BlogPost2 />} />
+        <Route path="/blogs" element={<BlogList2 />} /> */}
       </Route>
     </Routes>
   );
